@@ -13,7 +13,6 @@ int main() {
         int x, y;
         cin >> x;
         cin >> y;
-        cout << (x < y ? x : y) << endl;
-        cout << (x > y ? x : y) << endl;
+        cout << (x < y ? x : y) << " " << (x > y ? x : y) << endl ;
     }
 }
