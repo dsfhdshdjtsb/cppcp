@@ -2,6 +2,14 @@
 #include <algorithm>
 using namespace std;
 
+int binary(int* a, int c, int low, int high) {
+     if(low == high ) return low;
+     int mid = (low + high + 1) / 2;
+     int rand = a[mid];
+     if(c < a[mid]) return binary(a, c, low, mid-1);
+     else return binary(a, c, mid, high);
+}
+
 int main() { 
     ios_base::sync_with_stdio(false); 
     cin.tie(NULL);  
@@ -24,24 +32,20 @@ int main() {
         }
 
         for(int i = 0; i < q; i++) {
-            int c;
+            long long c;
             cin >> c;
 
-            long long mins = 0;
-            int j = 0;
-            for(; j < k+1; j++) {
-                if(c >= a[j]) {
-                    mins += b[j];
-                } else {
-                    break;
-                }
-            }
-        
-            if( j == k+1 ) {
-                cout << mins << ' ';
+
+            int j = binary(a, c, 0, k);
+            
+            if(a[j] == c) {
+                cout << b[j] << ' ';
             } else {
-                 double vel = (double)(b[j] - b[j-1]) / (a[j] - a[j-1]);
-                 mins += floor(vel * (c-a[j-1]));
+                 long long mins = b[j] + (c-a[j]) * (b[j+1] - b[j]) / (a[j+1] - a[j]);
+                 int test = (c-a[j]);
+                 int test2 = (b[j+1] - b[j]);
+                 int test3 = (a[j+1] - a[j]);
+                 int test4 = 0;
                  cout << mins << ' ';
             }
         }

@@ -10,16 +10,20 @@ int main() {
     cin >> t;
     
     while(t--) { 
-        int r;
+        long long r;
         cin >> r;
-        int p = r+1;
+        long long p = r+1;
         long long count = 0; 
-        for(int x = 0; x < p; x++) {
-            for(int y = (p); y >= 0; y--) {
-                int prod = x*x + y*y;
+        long long height = r;
+        for(long long x = 0; x <= r; x++) {
+            while(x*x+height * height >= p*p) {
+                height--;
+            }
+            for(long long y = (height); y >= 0; y--) {
+                long long prod = x*x + y*y;
                 // cout << x << " " << y << " " << prod << " " << r << " " << p*p << endl;
-                if(prod >= r*r && prod < p*p) {
-                    count++;
+                if(prod >= r*r) {
+                    count += 1;
                 } else if (prod <= r*r) {
                     break;
                 }
